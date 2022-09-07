@@ -13,7 +13,9 @@
                 background-repeat: no-repeat;
                 background-size: 100% 100%;
                 ">
-                    <h4 class="font-semibold text-xl text-gray-800 leading-tight" style="padding-bottom: 1000px;" height="500px">Big Data Chlen</h4>    
+                    <h4 class="font-semibold text-xl text-gray-800 leading-tight" style="padding-bottom: 1000px;" height="500px">
+                    Big Data Section
+                </h4>    
                 </div>
             </div>
         </div>
