@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  laravel-tests:
+  laravel-main:
 
     runs-on: ubuntu-latest
 
@@ -37,3 +37,13 @@ jobs:
     - name: Push tables to database
       run: php artisan migrate
     - run: php artisan serve
+  laravel-npm:
+    runs-on: ubuntu latest
+    
+    steps: 
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+          node-version: 16
+    - run: npm install
+    - run: npm run dev
