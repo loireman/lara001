@@ -35,8 +35,9 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
     - name: Push tables to database
-      run: php artisan migrate
+    - run: php artisan migrate
     - run: php artisan serve
+    
   laravel-npm:
     runs-on: ubuntu latest
     
@@ -45,5 +46,4 @@ jobs:
     - uses: actions/setup-node@v3
       with:
           node-version: 16
-    - run: npm install
-    - run: npm run dev
+    - run: npm install && npm run dev
