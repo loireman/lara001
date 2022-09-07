@@ -34,8 +34,8 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
-    - name: Push tables to database
-    - run: php artisan migrate
+      run: php artisan migrate
+    - name: Run site
     - run: php artisan serve
     
   laravel-npm:
