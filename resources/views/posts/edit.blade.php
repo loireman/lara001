@@ -21,6 +21,10 @@
             <div class="card-body">
                 {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method'=>'PATCH']) !!}
                     <div class="form-group">
+                        <strong>Slug:</strong>
+                        {!! Form::text('slug', null, array('placeholder' => 'Slug','class' => 'form-control')) !!}
+                    </div>
+                    <div class="form-group">
                         <strong>Title:</strong>
                         {!! Form::text('title', null, array('placeholder' => 'Title','class' => 'form-control')) !!}
                     </div>

@@ -17,6 +17,10 @@
             </div>
             <div class="card-body">
                 <div class="lead">
+                    <strong>Slug:</strong>
+                    {{ $post->slug }}
+                </div>
+                <div class="lead">
                     <strong>Title:</strong>
                     {{ $post->title }}
                 </div>

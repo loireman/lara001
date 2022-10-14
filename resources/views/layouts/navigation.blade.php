@@ -11,50 +11,26 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-                        <div class="container">
-                            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                            <span class="navbar-toggler-icon"></span> 
-                            </button>-->
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav mr-auto"></ul>
-                                <ul class="navbar-nav ml-auto">
-                                    @can('user-list')
-                                        <li><a class="nav-link" href="{{ route('users.index') }}">Users</a></li>
-                                    @endcan
-                                    @can('role-list')
-                                        <li><a class="nav-link" href="{{ route('roles.index') }}">Roles</a></li>
-                                    @endcan
-                                    @can('permission-list')
-                                        <li><a class="nav-link" href="{{ route('permissions.index') }}">Permission</a></li>
-                                    @endcan
-                                    @can('post-list')
-                                        <li><a class="nav-link" href="{{ route('posts.index') }}">Posts</a></li>
-                                    @endcan
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Home') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('news')" :active="request()->routeIs('news')">
-                        {{ __('News') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
-                        {{ __('About us') }}
-                    </x-nav-link>
-                </div>
-
-
-
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('Home') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('timetable')" :active="request()->routeIs('timetable')">
+                            {{ __('Timetable') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('news')" :active="request()->routeIs('news')">
+                            {{ __('News') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
+                            {{ __('About us') }}
+                        </x-nav-link>
+                    </div>
 
             </div>
 
@@ -74,6 +50,19 @@
                     </x-slot>
 
                     <x-slot name="content">
+                            @can('user-list', 'role-list', 'permission-list')
+                                <a class="nav-link" href="{{ route('posts.index') }}">
+                                    <x-dropdown-link :href="route('admin')">
+                                        {{ __('Admin') }}
+                                    </x-dropdown-link></a>
+                            @endcan
+                            @can('post-list')
+                                    <a class="nav-link" href="{{ route('posts.index') }}">
+                                        <x-dropdown-link :href="route('posts.index')">
+                                            {{ __('Posts') }}
+                                        </x-dropdown-link></a>
+                            @endcan
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

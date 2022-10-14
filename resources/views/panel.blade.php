@@ -1,15 +1,9 @@
 <x-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <div id="app">
-                            <main class="py-4">
-                                @yield('content')
-                            </main>
-                        </div>
-                </div>
+    <div class="py-12 px-40">
+            <div class="container">
+            @include('layouts.panel-nav')
             </div>
+            @yield('content')
         </div>
     </div>
 </x-app-layout>

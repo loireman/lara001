@@ -3,10 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TimetableController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
+use App\Models\Timetable;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,35 +19,46 @@ use App\Models\Post;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    Route::get('/news', function () {
+        $content = Post::latest()->paginate(10);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+        return view('news', compact('content'));
+    })->name('news');
 
-Route::get('/news', function () {
-    $content = new Post();
-    return view('news', ['content' => $content->all()]);
-})->middleware(['auth'])->name('news');
+    Route::get('/timetable', function () {
+        $content = Timetable::latest()->get();
+        return view('timetable', compact('content'));
+    })->name('timetable');
 
-Route::get('/about', function () {
-    return view('about');
-})->middleware(['auth'])->name('about');
+    Route::get('/news/{slug}', function ($path) {
+        $path = explode('/', ltrim($path, '/'));
+        $content = DB::select('select * from posts where slug = ?', [$path[0]]);
+        return view('news-element', compact('content'));
+    });
 
-Route::get('/panel', function () {
-    return view('panel');
-})->middleware(['auth'])->name('panel');
+    Route::get('/about', function () {
+        return view('about');
+    })->name('about');
+
+    Route::get('/panel', function () {
+        return view('panel');
+    })->name('panel');
+});
 
 require __DIR__.'/auth.php';
 
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function() {
+    Route::get('admin', function () { return view('panel'); })->name('admin');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
     Route::resource('posts', PostController::class);
+    Route::resource('timetables', TimetableController::class);
 });

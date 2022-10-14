@@ -33,7 +33,7 @@
                                 <td>
                                     @if(!empty($user->getRoleNames()))
                                         @foreach($user->getRoleNames() as $val)
-                                            <label class="badge badge-dark">{{ $val }}</label>
+                                            <label class="text-dark badge badge-dark">{{ $val }}</label>
                                         @endforeach
                                     @endif
                                 </td>
