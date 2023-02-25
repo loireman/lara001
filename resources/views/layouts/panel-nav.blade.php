@@ -5,14 +5,6 @@
             <div class="flex">
                 <!-- Navigation Links -->
                 @can('post-list')
-                    <div class="hidden space-x-3 sm:-my-px sm:ml-2 sm:flex">
-                        <a class="nav-link" href="{{ route('timetables.index') }}">
-                            <x-nav-link :href="route('timetables.index')">
-                                {{ __('Timetables') }}
-                            </x-nav-link></a>
-                    </div>
-                @endcan
-                @can('post-list')
                     <div class="hidden space-x-3 sm:-my-px sm:ml-10 sm:flex">
                         <a class="nav-link" href="{{ route('posts.index') }}">
                             <x-nav-link :href="route('posts.index')">

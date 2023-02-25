@@ -31,10 +31,6 @@ class PermissionTableSeeder extends Seeder
             'post-create',
             'post-edit',
             'post-delete',
-            'timetable-list',
-            'timetable-create',
-            'timetable-edit',
-            'timetable-delete',
         ];
 
         foreach ($data as $permission) {
