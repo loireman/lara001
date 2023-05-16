@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Tovary extends Model
 {
     use HasFactory;
 
@@ -16,7 +16,10 @@ class Post extends Model
      */
     protected $fillable = [
         'slug',
-        'title',
+        'name',
         'body',
+        'property1',
+        'property2',
+        'price',
     ];
 }

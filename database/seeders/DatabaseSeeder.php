@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             PermissionTableSeeder::class,
             RoleTableSeeder::class,
             UserTableSeeder::class,
-            PostTableSeeder::class,
+            TovaryTableSeeder::class,
         ]);
     }
 }

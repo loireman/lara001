@@ -24,6 +24,23 @@ const swiper = new Swiper('.swiper', {
     },
 });
 
+var counterPlaceHolder = document.getElementById("counter-placeholder");
+var btnIncrement = document.getElementById("btn-increment");
+var btnDecrement = document.getElementById("btn-decrement");
+
+var number = 1;
+
+btnIncrement.addEventListener("click", function(){
+    number++;
+    counterPlaceHolder.value = number;
+});
+
+btnDecrement.addEventListener("click", function(){
+    if(number > 1) {
+        number--;
+    }
+    counterPlaceHolder.value = number;
+});
 
 window.Alpine = Alpine;
 

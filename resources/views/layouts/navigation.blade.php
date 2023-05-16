@@ -17,8 +17,8 @@
                         </x-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('news')" :active="request()->routeIs('news')">
-                            {{ __('News') }}
+                        <x-nav-link :href="route('tovars')" :active="request()->routeIs('tovars')">
+                            {{ __('Товари') }}
                         </x-nav-link>
                     </div>
 
@@ -41,15 +41,15 @@
 
                     <x-slot name="content">
                             @can('user-list', 'role-list', 'permission-list')
-                                <a class="nav-link" href="{{ route('posts.index') }}">
+                                <a class="nav-link" href="{{ route('tovary.index') }}">
                                     <x-dropdown-link :href="route('admin')">
                                         {{ __('Admin') }}
                                     </x-dropdown-link></a>
                             @endcan
-                            @can('post-list')
-                                    <a class="nav-link" href="{{ route('posts.index') }}">
-                                        <x-dropdown-link :href="route('posts.index')">
-                                            {{ __('Posts') }}
+                            @can('tovary-list')
+                                    <a class="nav-link" href="{{ route('tovary.index') }}">
+                                        <x-dropdown-link :href="route('tovary.index')">
+                                            {{ __('Товари') }}
                                         </x-dropdown-link></a>
                             @endcan
 

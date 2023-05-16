@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Tovary;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class TovaryController extends Controller
 {
     /**
      * create a new instance of the class
@@ -14,10 +14,10 @@ class PostController extends Controller
      */
     function __construct()
     {
-         $this->middleware('permission:post-list|post-create|post-edit|post-delete', ['only' => ['index', 'show']]);
-         $this->middleware('permission:post-create', ['only' => ['create', 'store']]);
-         $this->middleware('permission:post-edit', ['only' => ['edit', 'update']]);
-         $this->middleware('permission:post-delete', ['only' => ['destroy']]);
+         $this->middleware('permission:tovary-list|tovary-create|tovary-edit|tovary-delete', ['only' => ['index', 'show']]);
+         $this->middleware('permission:tovary-create', ['only' => ['create', 'store']]);
+         $this->middleware('permission:tovary-edit', ['only' => ['edit', 'update']]);
+         $this->middleware('permission:tovary-delete', ['only' => ['destroy']]);
     }
 
     /**
@@ -27,9 +27,9 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        $data = Post::latest()->paginate(5);
+        $data = Tovary::latest()->paginate(5);
 
-        return view('posts.index',compact('data'));
+        return view('tovary.index',compact('data'));
     }
 
     /**
@@ -39,7 +39,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('tovary.create');
     }
 
     /**
@@ -51,15 +51,18 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
+            'name' => 'required',
             'body' => 'required',
+            'property1' => 'required|integer|min:0|max:1024',
+            'property2' => 'required|integer|min:0|max:128',
+            'price' => 'required|numeric|between:0,9999.99'
         ]);
         $input = $request->except(['_token']);
-    
-        Post::create($input);
-    
-        return redirect()->route('posts.index')
-            ->with('success','Post created successfully.');
+
+        Tovary::create($input);
+
+        return redirect()->route('tovary.index')
+            ->with('success','Товар успішно додано.');
     }
 
     /**
@@ -70,9 +73,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
+        $tovary = Tovary::find($id);
 
-        return view('posts.show', compact('post'));
+        return view('tovary.show', compact('tovary'));
     }
 
     /**
@@ -83,9 +86,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::find($id);
+        $tovary = Tovary::find($id);
 
-        return view('posts.edit',compact('post'));
+        return view('tovary.edit',compact('tovary'));
     }
 
     /**
@@ -98,16 +101,19 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'title' => 'required',
+            'name' => 'required',
             'body' => 'required',
+            'property1' => 'required|integer|min:0|max:1024',
+            'property2' => 'required|integer|min:0|max:128',
+            'price' => 'required|numeric|between:0,9999.99'
         ]);
 
-        $post = Post::find($id);
-    
-        $post->update($request->all());
-    
-        return redirect()->route('posts.index')
-            ->with('success', 'Post updated successfully.');
+        $tovary = Tovary::find($id);
+
+        $tovary->update($request->all());
+
+        return redirect()->route('tovary.index')
+            ->with('success', 'Товар успішно оновлено.');
     }
 
     /**
@@ -118,9 +124,9 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        Post::find($id)->delete();
-    
-        return redirect()->route('posts.index')
-            ->with('success', 'Post deleted successfully.');
+        Tovary::find($id)->delete();
+
+        return redirect()->route('tovary.index')
+            ->with('success', 'Товар успішно видалено.');
     }
 }

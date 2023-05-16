@@ -5,8 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\PostController;
-use App\Models\Post;
+use App\Http\Controllers\TovaryController;
+use App\Models\Tovary;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,16 +22,16 @@ Route::group(['middleware' => ['auth']], function() {
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/news', function () {
-        $content = Post::latest()->paginate(10);
+    Route::get('/tovars', function () {
+        $content = Tovary::latest()->paginate(10);
 
-        return view('news', compact('content'));
-    })->name('news');
+        return view('tovars', compact('content'));
+    })->name('tovars');
 
-    Route::get('/news/{slug}', function ($path) {
+    Route::get('/tovars/{slug}', function ($path) {
         $path = explode('/', ltrim($path, '/'));
-        $content = DB::select('select * from posts where slug = ?', [$path[0]]);
-        return view('news-element', compact('content'));
+        $content = DB::select('select * from tovaries where slug = ?', [$path[0]]);
+        return view('tovar-element', compact('content'));
     });
 
     Route::get('/panel', function () {
@@ -48,5 +48,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
-    Route::resource('posts', PostController::class);
+    Route::resource('tovary', TovaryController::class);
 });

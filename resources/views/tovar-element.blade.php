@@ -12,8 +12,24 @@
                 @if ($content != [])
                 @foreach($content as $item)
                     <h4 class="p-10 font-semibold text-xl text-white leading-tight" >
-                    {{ $item->title }}
+                    {{ $item->name }}
                     </h4><br/>
+                    <form class="flex gap-3 bg-white text-black text-2xl items-center h-fit w-fit p-2 rounded-xl my-6">
+                        <span>Кількість:</span>
+                        <div class="count-btns p-6 font-semibold text-lg bg-black text-white rounded-xl" id="btn-decrement"> - </div>
+                        <input class="counter-number max-w-[6rem]" value="1" id="counter-placeholder">
+                        <div class="count-btns p-6 font-semibold text-lg bg-black text-white rounded-xl" id="btn-increment"> + </div>
+                        <button type="submit" class="px-12 py-6 font-semibold text-lg bg-black text-white rounded-xl">Замовити</button>
+                    </form>
+                    <p class="font-semibold text-s text-white leading-tight" >
+                        Property 1: {{ $item->property1 }}
+                    </p>
+                    <p class="font-semibold text-s text-white leading-tight" >
+                        Property 2: {{ $item->property2 }}
+                    </p>
+                    <p class="font-semibold text-s text-white leading-tight" >
+                        Price: {{ $item->price }}
+                    </p>
                     <p class="p-10 font-semibold text-s text-white leading-tight" >
                     {{ $item->body }}
                     </p>

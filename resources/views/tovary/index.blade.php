@@ -8,10 +8,10 @@
             </div>
         @endif
         <div class="card">
-            <div class="card-header">Posts
+            <div class="card-header">Товари
                 @can('role-create')
                     <span class="float-right">
-                        <a class="btn btn-primary" href="{{ route('posts.create') }}">New post</a>
+                        <a class="btn btn-primary" href="{{ route('tovary.create') }}">Створити новий товар</a>
                     </span>
                 @endcan
             </div>
@@ -20,22 +20,24 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th width="280px">Action</th>
+                            <th>Ім'я</th>
+                            <th>Ціна</th>
+                            <th width="280px">Дії</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $key => $post)
+                        @foreach ($data as $key => $tovary)
                             <tr>
-                                <td>{{ $post->id }}</td>
-                                <td>{{ $post->title }}</td>
+                                <td>{{ $tovary->id }}</td>
+                                <td>{{ $tovary->name }}</td>
+                                <td>{{ $tovary->price }}</td>
                                 <td>
-                                    <a class="btn btn-success" href="{{ route('posts.show',$post->id) }}">Show</a>
-                                    @can('post-edit')
-                                        <a class="btn btn-primary" href="{{ route('posts.edit',$post->id) }}">Edit</a>
+                                    <a class="btn btn-success" href="{{ route('tovary.show',$tovary->id) }}">Show</a>
+                                    @can('tovary-edit')
+                                        <a class="btn btn-primary" href="{{ route('tovary.edit',$tovary->id) }}">Edit</a>
                                     @endcan
-                                    @can('post-delete')
-                                        {!! Form::open(['method' => 'DELETE','route' => ['posts.destroy', $post->id],'style'=>'display:inline']) !!}
+                                    @can('tovary-delete')
+                                        {!! Form::open(['method' => 'DELETE','route' => ['tovary.destroy', $tovary->id],'style'=>'display:inline']) !!}
                                         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                                         {!! Form::close() !!}
                                     @endcan

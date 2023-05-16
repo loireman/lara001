@@ -4,11 +4,11 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Navigation Links -->
-                @can('post-list')
+                @can('tovary-list')
                     <div class="hidden space-x-3 sm:-my-px sm:ml-10 sm:flex">
-                        <a class="nav-link" href="{{ route('posts.index') }}">
-                            <x-nav-link :href="route('posts.index')">
-                                {{ __('Posts') }}
+                        <a class="nav-link" href="{{ route('tovary.index') }}">
+                            <x-nav-link :href="route('tovary.index')">
+                                {{ __('Товари') }}
                             </x-nav-link></a>
                     </div>
                 @endcan

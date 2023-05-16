@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Post;
-use Database\Factories\PostFactory;
+use App\Models\Tovary;
+use Database\Factories\TovaryFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 
-class PostTableSeeder extends Seeder
+class TovaryTableSeeder extends Seeder
 {
 
     /**
@@ -18,7 +18,7 @@ class PostTableSeeder extends Seeder
      */
     public function run()
     {
-        Post::factory()->count(10)->create();
+        Tovary::factory()->count(10)->create();
         //
     }
 }
